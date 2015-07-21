@@ -221,8 +221,8 @@ public class FantasyFootball {
 
 				String result = id + name + team + skill + date;
 
-//				JOptionPane.showMessageDialog(null,
-//						"Here's your string: " + result);
+				// JOptionPane.showMessageDialog(null,
+				// "Here's your string: " + result);
 				int bytePos = intId > 0 ? (intId - 1) * MAX_RECORD_LENGTH : 0;
 
 				int bytepos = intId == 0 ? 0 : (intId - 1) * MAX_RECORD_LENGTH;
@@ -282,13 +282,14 @@ public class FantasyFootball {
 				date = result.substring(63);
 
 				JOptionPane.showMessageDialog(null,
-						"Name: " + name.trim() + "\nTeam: " + team.trim() + "\nSkill: "
-								+ skill.trim() + "\nDraft date: " + date.trim(),
+						"Name: " + name.trim() + "\nTeam: " + team.trim()
+								+ "\nSkill: " + skill.trim() + "\nDraft date: "
+								+ date.trim(),
 						"Results", JOptionPane.INFORMATION_MESSAGE);
-//				System.out.println(name);
-//				System.out.println(team);
-//				System.out.println(skill);
-//				System.out.println(date);
+				// System.out.println(name);
+				// System.out.println(team);
+				// System.out.println(skill);
+				// System.out.println(date);
 
 			}
 		}

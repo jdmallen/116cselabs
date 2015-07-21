@@ -6,10 +6,11 @@ import javax.swing.JOptionPane;
 
 public class ReadUserInput implements Runnable {
 	private MTQueue _cmdQ;
-	
-	public ReadUserInput(MTQueue mtq){
+
+	public ReadUserInput(MTQueue mtq) {
 		_cmdQ = mtq;
 	}
+
 	@Override
 	public void run() {
 		String cmd = "";
@@ -165,4 +166,4 @@ public class ReadUserInput implements Runnable {
 		}
 		_cmdQ.MTPut("end");
 	}
-} 
+}

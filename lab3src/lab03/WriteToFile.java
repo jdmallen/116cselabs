@@ -11,18 +11,19 @@ public class WriteToFile implements Runnable {
 	private static File _data;
 	private static RandomAccessFile _store;
 	private long _storeLength = 0;
-	
-	public WriteToFile(MTQueue mtq){
+
+	public WriteToFile(MTQueue mtq) {
 		_cmdQ = mtq;
 		try {
-			if (_data == null){
+			if (_data == null) {
 				_data = new File(System.getProperty("user.dir")
 						+ "\\datafiles\\lab02\\data.txt");
 			}
-			if (_store == null){
+			if (_store == null) {
 				_store = new RandomAccessFile(_data, "rw");
 				_storeLength = _store.length();
-				if (_storeLength < ((MTQueue.MAX_RECORD_LENGTH + 2) * MTQueue.RECORD_COUNT)) {
+				if (_storeLength < ((MTQueue.MAX_RECORD_LENGTH + 2)
+						* MTQueue.RECORD_COUNT)) {
 					for (int i = 0; i < 20; ++i) {
 						try {
 							_store.writeUTF(MTQueue.repeatChar(71, ' '));
@@ -43,30 +44,31 @@ public class WriteToFile implements Runnable {
 			System.exit(1);
 		}
 	}
-	
+
 	@Override
 	public void run() {
-		while (true){
+		while (true) {
 			String strToExecute = _cmdQ.MTGet();
-			if (strToExecute == null){
+			if (strToExecute == null) {
 				try {
 					Thread.sleep(2000);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 				continue;
-			} else if (strToExecute.compareToIgnoreCase("end") == 0){
+			} else if (strToExecute.compareToIgnoreCase("end") == 0) {
 				break;
 			}
 			String idPortion = strToExecute.substring(0, 5);
 			int intId = 0;
-			try{
+			try {
 				intId = Integer.parseInt(idPortion.trim());
-			} catch(NumberFormatException e){
+			} catch (NumberFormatException e) {
 				e.printStackTrace();
 			}
-			
-			int bytePos = intId > 0 ? (intId - 1) * MTQueue.MAX_RECORD_LENGTH : 0;
+
+			int bytePos = intId > 0 ? (intId - 1) * MTQueue.MAX_RECORD_LENGTH
+					: 0;
 
 			try {
 				_store.seek(bytePos);
@@ -79,9 +81,8 @@ public class WriteToFile implements Runnable {
 								+ e.getMessage(),
 						"Uh oh", JOptionPane.ERROR_MESSAGE);
 			}
-			
+
 		}
-		
 
 	}
 
