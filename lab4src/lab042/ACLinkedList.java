@@ -67,8 +67,9 @@ public class ACLinkedList {
         for (int i = 0; i < index; i++) {
             current = current.get_next();
         }
-        return current;
+        return current.isDeleted() ? null : current;
     }
+    
     public String toString() {
         if (front == null) {
             return "[]";
@@ -76,7 +77,9 @@ public class ACLinkedList {
             String result = "[" + front;
             Aircraft current = front.get_next();
             while (current != null) {
-                result += ", " + current;
+            	if (!current.isDeleted()){
+                    result += ", " + current;            		
+            	}
                 current = current.get_next();
             }
             result += "]";
@@ -88,8 +91,8 @@ public class ACLinkedList {
             // removing from the front
             front = front.get_next();
         } else {
-            Aircraft current = goTo(index - 1);
-            current.set_next(current.get_next().get_next());   // deletes the node
+            Aircraft current = goTo(index);
+            current.set_deleted(true);   // deletes the node
         }
     }
 
@@ -99,15 +102,15 @@ public class ACLinkedList {
          for (int i = 0; i < index; i++) {
              current = current.get_next();
          }
-         return current;
+         return current.isDeleted() ? null : current;
 	}
 
 	public int size() {
         int count = 0;
         Aircraft current = front;
         while (current != null) {
-            current = current.get_next();
             count++;
+            current = current.get_next();
         }
         return count;
     }
@@ -120,7 +123,7 @@ public class ACLinkedList {
 		int size = this.size();
 		for (int i = 0; i < size; i++){
 			Aircraft node = goTo(i);
-			if (node.get_name().equals(name)){
+			if (node.get_name().equals(name) && !node.isDeleted()){
 				return i;
 			}
 		}

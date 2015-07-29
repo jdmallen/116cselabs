@@ -1,12 +1,14 @@
 package lab042;
 
 public class Aircraft {
+	private Boolean _deleted;
 	private String _name;
 	private int _alt;
 	private int _speed;
 	private String _type;
 	private Aircraft _next;
 	public Aircraft(){
+		_deleted = false;
 		_name="";
 		_alt=0;
 		_speed=0;
@@ -15,7 +17,7 @@ public class Aircraft {
 	}
 
 	public Aircraft(String name, int alt, int speed, String type) {
-		
+		_deleted = false;		
 		_name=name;
 		_alt=alt;
 		_speed=speed;
@@ -26,7 +28,7 @@ public class Aircraft {
 
 	
 	public Aircraft(String name, int alt, int speed, String type,Aircraft next) {
-		
+		_deleted = false;		
 		_name=name;
 		_alt=alt;
 		_speed=speed;
@@ -36,6 +38,7 @@ public class Aircraft {
 	
 	// Copy constructor
 	public Aircraft(Aircraft a){
+		_deleted = false;
 		_name = a._name;
 		_type = a._type;
 		_alt = a._alt;
@@ -58,6 +61,14 @@ public class Aircraft {
 	public String get_type() {
 		return _type;
 	}
+	public Boolean isDeleted() {
+		return _deleted;
+	}
+
+	public void set_deleted(Boolean _deleted) {
+		this._deleted = _deleted;
+	}
+
 	public void set_next(Aircraft a){
 		_next=a;
 	}
