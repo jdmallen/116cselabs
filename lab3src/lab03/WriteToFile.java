@@ -8,8 +8,8 @@ import javax.swing.JOptionPane;
 
 public class WriteToFile implements Runnable {
 	private MTQueue _cmdQ;
-	private static File _data;
-	private static RandomAccessFile _store;
+	private File _data;
+	private RandomAccessFile _store;
 	private long _storeLength = 0;
 
 	public WriteToFile(MTQueue mtq) {
